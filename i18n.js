@@ -1,0 +1,314 @@
+const TRANSLATIONS = {
+  pt: {
+    'header-title': 'Snov.io Support Tools',
+    'tab-confirmation': 'Link de confirmação',
+    'tab-fastspring': 'Fastspring',
+    'tab-log': 'Log',
+    'tab-settings': 'Configurações',
+    'label-email': 'Email do destinatário',
+    'label-conf-link': 'Link de confirmação',
+    'label-agent': 'Agente',
+    'placeholder-email': 'usuario@email.com',
+    'placeholder-url': 'https://...',
+    'placeholder-text': 'Cole o link ou texto aqui...',
+    'placeholder-agent-select': 'Selecione o agente',
+    'btn-submit': 'Enviar',
+    'btn-submitting': 'Enviando...',
+    'label-reason': 'Motivo da requisição',
+    'fs-reason-placeholder': 'Selecione o motivo',
+    'fs-reason-whitelist': 'Solicitação de Whitelist',
+    'fs-reason-email-change': 'Atualizar Email do Painel de Cobrança',
+    'fs-reason-invoice-data': 'Atualizar Dados da Fatura',
+    'label-email-from': 'From (email antigo)',
+    'label-email-to': 'To (novo email)',
+    'label-invoice-notes': 'Descrição das alterações necessárias',
+    'placeholder-email-from': 'antigo@email.com',
+    'placeholder-email-to': 'novo@email.com',
+    'placeholder-invoice-notes': 'Descreva as alterações de dados do invoice...',
+    'settings-language-title': 'Idioma',
+    'lang-toggle-aria': 'Idioma da interface: {name}. Clique para alternar.',
+    'settings-agents-title': 'Cadastro de Agentes',
+    'placeholder-agent-name': 'Nome do agente',
+    'no-agents': 'Nenhum agente cadastrado.',
+    'log-title': 'Log de envios',
+    'log-hint': 'Mantido até você fechar o navegador por completo.',
+    'log-clear': 'Limpar',
+    'log-empty': 'Nenhum envio registrado.',
+    'log-resend': 'Reenviar',
+    'about-title': 'Sobre',
+    'about-product': 'Snov.io Support Tools',
+    'about-version-label': 'Versão',
+    'about-internal': 'Extensão interna para envio de requisições via webhook. Desenvolvido para uso interno Snov.io Support.',
+    'about-close': 'Fechar',
+    'notify-success': 'Informação enviada com sucesso.',
+    'notify-log-cleared': 'Log limpo.',
+    'notify-agent-exists': 'Agente já cadastrado.',
+    'notify-agent-added': 'Agente "{name}" adicionado.',
+    'notify-resend-success': 'Reenvio realizado com sucesso.',
+    'err-email': 'Insira um email válido.',
+    'err-link-required': 'Insira o link ou texto de confirmação.',
+    'err-url': 'Insira uma URL válida.',
+    'err-agent': 'Selecione um agente.',
+    'err-reason': 'Selecione um motivo.',
+    'err-email-from': 'Insira o email antigo válido.',
+    'err-email-to': 'Insira o novo email válido.',
+    'err-invoice-notes': 'Descreva as alterações necessárias.',
+    'err-send-fail': 'Falha ao enviar. Tente novamente.',
+    'log-type-confirmation': 'Link Confirmação',
+    'log-type-fastspring': 'Fastspring',
+    'about-bug-title': 'Reportar Bug',
+    'about-bug-desc': 'Encontrou um problema? Descreva o que aconteceu e envie para o email abaixo.',
+    'about-bug-copy': 'Copiar email',
+    'about-bug-copied': 'Copiado!',
+    'settings-aria': 'Configurações'
+  },
+
+  en: {
+    'header-title': 'Snov.io Support Tools',
+    'tab-confirmation': 'Confirm Link',
+    'tab-fastspring': 'Fastspring',
+    'tab-log': 'Log',
+    'tab-settings': 'Settings',
+    'label-email': 'Recipient email',
+    'label-conf-link': 'Confirmation link',
+    'label-agent': 'Agent',
+    'placeholder-email': 'user@email.com',
+    'placeholder-url': 'https://...',
+    'placeholder-text': 'Paste link or text here...',
+    'placeholder-agent-select': 'Select agent',
+    'btn-submit': 'Submit',
+    'btn-submitting': 'Submitting...',
+    'label-reason': 'Request reason',
+    'fs-reason-placeholder': 'Select reason',
+    'fs-reason-whitelist': 'Whitelist Request',
+    'fs-reason-email-change': 'Update Billing Panel Email',
+    'fs-reason-invoice-data': 'Update Invoice Data',
+    'label-email-from': 'From (old email)',
+    'label-email-to': 'To (new email)',
+    'label-invoice-notes': 'Description of required changes',
+    'placeholder-email-from': 'old@email.com',
+    'placeholder-email-to': 'new@email.com',
+    'placeholder-invoice-notes': 'Describe the invoice data changes...',
+    'settings-language-title': 'Language',
+    'lang-toggle-aria': 'Interface language: {name}. Click to switch.',
+    'settings-agents-title': 'Agent Management',
+    'placeholder-agent-name': 'Agent name',
+    'no-agents': 'No agents registered.',
+    'log-title': 'Submission Log',
+    'log-hint': 'Kept until you fully close the browser.',
+    'log-clear': 'Clear',
+    'log-empty': 'No submissions recorded.',
+    'log-resend': 'Resend',
+    'about-title': 'About',
+    'about-product': 'Snov.io Support Tools',
+    'about-version-label': 'Version',
+    'about-internal': 'Internal extension for sending requests via webhook. Developed for Snov.io Support internal use.',
+    'about-close': 'Close',
+    'notify-success': 'Information sent successfully.',
+    'notify-log-cleared': 'Log cleared.',
+    'notify-agent-exists': 'Agent already registered.',
+    'notify-agent-added': 'Agent "{name}" added.',
+    'notify-resend-success': 'Resend completed successfully.',
+    'err-email': 'Enter a valid email.',
+    'err-link-required': 'Enter the confirmation link or text.',
+    'err-url': 'Enter a valid URL.',
+    'err-agent': 'Select an agent.',
+    'err-reason': 'Select a reason.',
+    'err-email-from': 'Enter a valid old email.',
+    'err-email-to': 'Enter a valid new email.',
+    'err-invoice-notes': 'Describe the required changes.',
+    'err-send-fail': 'Failed to send. Please try again.',
+    'log-type-confirmation': 'Confirmation Link',
+    'log-type-fastspring': 'Fastspring',
+    'about-bug-title': 'Report a Bug',
+    'about-bug-desc': 'Found an issue? Describe what happened and send it to the email below.',
+    'about-bug-copy': 'Copy email',
+    'about-bug-copied': 'Copied!',
+    'settings-aria': 'Settings'
+  },
+
+  es: {
+    'header-title': 'Snov.io Support Tools',
+    'tab-confirmation': 'Confirmar enlace',
+    'tab-fastspring': 'Fastspring',
+    'tab-log': 'Registro',
+    'tab-settings': 'Configuración',
+    'label-email': 'Email del destinatario',
+    'label-conf-link': 'Enlace de confirmación',
+    'label-agent': 'Agente',
+    'placeholder-email': 'usuario@email.com',
+    'placeholder-url': 'https://...',
+    'placeholder-text': 'Pegue el enlace o texto aquí...',
+    'placeholder-agent-select': 'Seleccione agente',
+    'btn-submit': 'Enviar',
+    'btn-submitting': 'Enviando...',
+    'label-reason': 'Motivo de la solicitud',
+    'fs-reason-placeholder': 'Seleccione motivo',
+    'fs-reason-whitelist': 'Solicitud de Lista Blanca',
+    'fs-reason-email-change': 'Actualizar Email del Panel de Cobro',
+    'fs-reason-invoice-data': 'Actualizar Datos de Factura',
+    'label-email-from': 'De (email anterior)',
+    'label-email-to': 'A (email nuevo)',
+    'label-invoice-notes': 'Descripción de los cambios necesarios',
+    'placeholder-email-from': 'anterior@email.com',
+    'placeholder-email-to': 'nuevo@email.com',
+    'placeholder-invoice-notes': 'Describa los cambios de datos de la factura...',
+    'settings-language-title': 'Idioma',
+    'lang-toggle-aria': 'Idioma de la interfaz: {name}. Pulse para cambiar.',
+    'settings-agents-title': 'Registro de Agentes',
+    'placeholder-agent-name': 'Nombre del agente',
+    'no-agents': 'Ningún agente registrado.',
+    'log-title': 'Registro de envíos',
+    'log-hint': 'Se mantiene hasta que cierre completamente el navegador.',
+    'log-clear': 'Limpiar',
+    'log-empty': 'Ningún envío registrado.',
+    'log-resend': 'Reenviar',
+    'about-title': 'Acerca de',
+    'about-product': 'Snov.io Support Tools',
+    'about-version-label': 'Versión',
+    'about-internal': 'Extensión interna para el envío de solicitudes vía webhook. Desarrollado para uso interno de Snov.io Support.',
+    'about-close': 'Cerrar',
+    'notify-success': 'Información enviada con éxito.',
+    'notify-log-cleared': 'Registro limpiado.',
+    'notify-agent-exists': 'Agente ya registrado.',
+    'notify-agent-added': 'Agente "{name}" agregado.',
+    'notify-resend-success': 'Reenvío realizado con éxito.',
+    'err-email': 'Ingrese un email válido.',
+    'err-link-required': 'Ingrese el enlace o texto de confirmación.',
+    'err-url': 'Ingrese una URL válida.',
+    'err-agent': 'Seleccione un agente.',
+    'err-reason': 'Seleccione un motivo.',
+    'err-email-from': 'Ingrese el email anterior válido.',
+    'err-email-to': 'Ingrese el nuevo email válido.',
+    'err-invoice-notes': 'Describa los cambios necesarios.',
+    'err-send-fail': 'Error al enviar. Inténtelo de nuevo.',
+    'log-type-confirmation': 'Enlace Confirmación',
+    'log-type-fastspring': 'Fastspring',
+    'about-bug-title': 'Reportar Error',
+    'about-bug-desc': '¿Encontró un problema? Describa lo que pasó y envíelo al correo a continuación.',
+    'about-bug-copy': 'Copiar correo',
+    'about-bug-copied': '¡Copiado!',
+    'settings-aria': 'Configuración'
+  },
+
+  ua: {
+    'header-title': 'Snov.io Support Tools',
+    'tab-confirmation': 'Підтвердження посилання',
+    'tab-fastspring': 'Fastspring',
+    'tab-log': 'Журнал',
+    'tab-settings': 'Налаштування',
+    'label-email': 'Email отримувача',
+    'label-conf-link': 'Посилання для підтвердження',
+    'label-agent': 'Агент',
+    'placeholder-email': 'користувач@email.com',
+    'placeholder-url': 'https://...',
+    'placeholder-text': 'Вставте посилання або текст тут...',
+    'placeholder-agent-select': 'Оберіть агента',
+    'btn-submit': 'Надіслати',
+    'btn-submitting': 'Надсилання...',
+    'label-reason': 'Причина запиту',
+    'fs-reason-placeholder': 'Оберіть причину',
+    'fs-reason-whitelist': 'Запит на Whitelist',
+    'fs-reason-email-change': 'Оновити Email платіжної панелі',
+    'fs-reason-invoice-data': 'Оновлення даних рахунку',
+    'label-email-from': 'From (старий email)',
+    'label-email-to': 'To (новий email)',
+    'label-invoice-notes': 'Опис необхідних змін',
+    'placeholder-email-from': 'старий@email.com',
+    'placeholder-email-to': 'новий@email.com',
+    'placeholder-invoice-notes': 'Опишіть зміни даних рахунку...',
+    'settings-language-title': 'Мова',
+    'lang-toggle-aria': 'Мова інтерфейсу: {name}. Натисніть для зміни.',
+    'settings-agents-title': 'Реєстрація агентів',
+    'placeholder-agent-name': "Ім'я агента",
+    'no-agents': 'Немає зареєстрованих агентів.',
+    'log-title': 'Журнал відправок',
+    'log-hint': 'Зберігається до повного закриття браузера.',
+    'log-clear': 'Очистити',
+    'log-empty': 'Немає записів.',
+    'log-resend': 'Повторити',
+    'about-title': 'Про',
+    'about-product': 'Snov.io Support Tools',
+    'about-version-label': 'Версія',
+    'about-internal': 'Внутрішнє розширення для відправки запитів через webhook. Розроблено для внутрішнього використання Snov.io Support.',
+    'about-close': 'Закрити',
+    'notify-success': 'Інформацію успішно надіслано.',
+    'notify-log-cleared': 'Журнал очищено.',
+    'notify-agent-exists': 'Агент вже зареєстрований.',
+    'notify-agent-added': 'Агента "{name}" додано.',
+    'notify-resend-success': 'Повторна відправка успішна.',
+    'err-email': 'Введіть дійсний email.',
+    'err-link-required': 'Введіть посилання або текст підтвердження.',
+    'err-url': 'Введіть дійсну URL-адресу.',
+    'err-agent': 'Оберіть агента.',
+    'err-reason': 'Оберіть причину.',
+    'err-email-from': 'Введіть дійсний старий email.',
+    'err-email-to': 'Введіть дійсний новий email.',
+    'err-invoice-notes': 'Опишіть необхідні зміни.',
+    'err-send-fail': 'Помилка відправки. Спробуйте ще раз.',
+    'log-type-confirmation': 'Посилання підтвердження',
+    'log-type-fastspring': 'Fastspring',
+    'about-bug-title': 'Повідомити про помилку',
+    'about-bug-desc': 'Знайшли проблему? Опишіть, що сталося, та надішліть на email нижче.',
+    'about-bug-copy': 'Копіювати email',
+    'about-bug-copied': 'Скопійовано!',
+    'settings-aria': 'Налаштування'
+  }
+};
+
+const STORAGE_KEY_LANG = 'snovio_lang';
+let currentLang = localStorage.getItem(STORAGE_KEY_LANG) || 'pt';
+
+function t(key, replacements) {
+  const dict = TRANSLATIONS[currentLang] || TRANSLATIONS.pt;
+  let str = dict[key] || TRANSLATIONS.pt[key] || key;
+  if (replacements) {
+    Object.entries(replacements).forEach(([k, v]) => {
+      str = str.replace(`{${k}}`, v);
+    });
+  }
+  return str;
+}
+
+function applyLanguage(lang) {
+  if (!TRANSLATIONS[lang]) lang = 'pt';
+  currentLang = lang;
+  localStorage.setItem(STORAGE_KEY_LANG, lang);
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    el.textContent = t(key);
+  });
+
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    el.placeholder = t(key);
+  });
+
+  document.querySelectorAll('[data-i18n-title]').forEach(el => {
+    const key = el.getAttribute('data-i18n-title');
+    el.title = t(key);
+  });
+
+  document.querySelectorAll('[data-i18n-aria-label]').forEach(el => {
+    const key = el.getAttribute('data-i18n-aria-label');
+    el.setAttribute('aria-label', t(key));
+  });
+
+  syncLangToggleUI(lang);
+
+  document.documentElement.lang = lang === 'pt' ? 'pt-BR' : lang === 'es' ? 'es' : lang === 'ua' ? 'uk' : 'en';
+}
+
+function syncLangToggleUI(lang) {
+  const btn = document.getElementById('btn-lang-toggle');
+  if (!btn) return;
+  const codes = { pt: 'PT', en: 'EN', es: 'SP', ua: 'UA' };
+  const native = { pt: 'Português', en: 'English', es: 'Español', ua: 'Українська' };
+  const codeEl = btn.querySelector('.lang-code');
+  if (codeEl) codeEl.textContent = codes[lang] || 'PT';
+  const name = native[lang] || native.pt;
+  const aria = t('lang-toggle-aria', { name });
+  btn.setAttribute('aria-label', aria);
+  btn.title = aria;
+}
