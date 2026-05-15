@@ -38,13 +38,17 @@
     <!-- Tab Navigation -->
     <nav class="tab-nav">
       <div class="tab-container">
-        <button type="button" class="tab-btn tab-btn--full" data-tab="fastspring">
+        <button type="button" class="tab-btn" data-tab="fastspring">
           <img class="tab-icon" src="icons/fastspring32.png" width="27" height="27" alt="" aria-hidden="true">
           <span class="tab-label" data-i18n="tab-fastspring">Fastspring</span>
         </button>
         <button type="button" class="tab-btn active" data-tab="confirmation">
           <img class="tab-icon" src="icons/linkdeconfrimação32.png" width="27" height="27" alt="" aria-hidden="true">
           <span class="tab-label" data-i18n="tab-confirmation">Link de confirmação</span>
+        </button>
+        <button type="button" class="tab-btn" data-tab="accounts">
+          <img class="tab-icon" src="icons/profile32.png" width="27" height="27" alt="" aria-hidden="true">
+          <span class="tab-label" data-i18n="tab-accounts">Contas</span>
         </button>
         <button type="button" class="tab-btn" data-tab="log">
           <img class="tab-icon" src="icons/log32.png" width="27" height="27" alt="" aria-hidden="true">
@@ -165,7 +169,57 @@
       </div>
     </section>
 
-    <!-- Tab 4: Log -->
+    <!-- Tab 4: Accounts -->
+    <section id="tab-accounts" class="tab-panel">
+      <form id="form-accounts" novalidate>
+        <div class="form-group">
+          <label for="acc-reason" data-i18n="label-reason">Tipo de solicitação</label>
+          <select id="acc-reason" required>
+            <option value="" data-i18n="acct-reason-placeholder">Selecione o tipo</option>
+            <option value="delete_account" data-i18n="acct-reason-delete">Deletar conta</option>
+            <option value="cancel_snovio_plan" data-i18n="acct-reason-cancel-snovio">Cancelar plano Snov.io</option>
+            <option value="cancel_linkedin_automation" data-i18n="acct-reason-cancel-linkedin">Cancelar LinkedIn Automation</option>
+          </select>
+          <span class="field-error" id="acc-reason-error"></span>
+        </div>
+
+        <div id="acc-after-reason" class="acc-after-reason" hidden>
+          <div class="form-group">
+            <label for="acc-region" data-i18n="label-region">Região</label>
+            <select id="acc-region">
+              <option value="" data-i18n="region-placeholder">Selecione a região</option>
+              <option value="Global" data-i18n="region-global">Global</option>
+              <option value="Brazil" data-i18n="region-brazil">Brazil</option>
+            </select>
+            <span class="field-error" id="acc-region-error"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="acc-email" data-i18n="label-email">Email do destinatário</label>
+            <input type="email" id="acc-email" data-i18n-placeholder="placeholder-email" placeholder="usuario@email.com" required>
+            <span class="field-error" id="acc-email-error"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="acc-agent" data-i18n="label-agent">Agente</label>
+            <select id="acc-agent" required>
+              <option value="" data-i18n="placeholder-agent-select">Selecione o agente</option>
+            </select>
+            <span class="field-error" id="acc-agent-error"></span>
+          </div>
+
+          <button type="submit" class="btn-submit" id="acc-submit" aria-busy="false">
+            <span class="btn-text" data-i18n="btn-submit">Enviar</span>
+            <span class="btn-loading">
+              <span class="spinner" aria-hidden="true"></span>
+              <span data-i18n="btn-submitting">Enviando...</span>
+            </span>
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Tab 5: Log -->
     <section id="tab-log" class="tab-panel tab-panel--log">
       <div class="log-tab-header">
         <div class="log-tab-header-top">

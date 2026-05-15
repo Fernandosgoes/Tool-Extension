@@ -29,6 +29,9 @@
   --tab-accent-log: #7c52c8;
   --tab-accent-log-light: #ede8f9;
   --tab-accent-log-text: #3e1f7a;
+  --tab-accent-accounts: #E11D48;
+  --tab-accent-accounts-light: #FFE4E6;
+  --tab-accent-accounts-text: #881337;
 }
 
 * {
@@ -340,6 +343,12 @@ body {
   color: #3e1f7a;
 }
 
+.tab-btn[data-tab="accounts"]:hover:not(.active) {
+  background: #FFE4E6;
+  border-color: #FDA4AF;
+  color: #881337;
+}
+
 /* Selecionado: fundo colorido claro + borda no acento */
 .tab-btn[data-tab="confirmation"].active {
   background: var(--tab-accent-confirmation-light);
@@ -363,6 +372,14 @@ body {
   border: 2px solid var(--tab-accent-settings);
   font-weight: 600;
   box-shadow: 0 2px 8px rgba(217, 119, 6, 0.18);
+}
+
+.tab-btn[data-tab="accounts"].active {
+  background: var(--tab-accent-accounts-light);
+  color: var(--tab-accent-accounts-text);
+  border: 2px solid var(--tab-accent-accounts);
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(225, 29, 72, 0.18);
 }
 
 .tab-btn[data-tab="log"].active {
@@ -510,7 +527,8 @@ body {
   min-height: 16px;
 }
 
-.fs-after-reason {
+.fs-after-reason,
+.acc-after-reason {
   margin-top: 4px;
   animation: fadeIn 0.25s ease;
 }

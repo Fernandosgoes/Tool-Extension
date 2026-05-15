@@ -25,6 +25,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const fsEmailTo = document.getElementById('fs-email-to');
   const fsNotes = document.getElementById('fs-notes');
 
+  const formAccounts = document.getElementById('form-accounts');
+  const accReason = document.getElementById('acc-reason');
+  const accEmail = document.getElementById('acc-email');
+  const accAgent = document.getElementById('acc-agent');
+  const accSubmit = document.getElementById('acc-submit');
+  const accAfterReason = document.getElementById('acc-after-reason');
+  const accRegion = document.getElementById('acc-region');
+
   const agentNameInput = document.getElementById('agent-name-input');
   const btnAddAgent = document.getElementById('btn-add-agent');
   const agentListEl = document.getElementById('agent-list');
@@ -45,7 +53,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const FASTSPRING_REASON_I18N_KEYS = {
     whitelist: 'fs-reason-whitelist',
     email_change: 'fs-reason-email-change',
-    invoice_data_change: 'fs-reason-invoice-data'
+    invoice_data_change: 'fs-reason-invoice-data',
+  };
+
+  const ACCOUNTS_REASON_I18N_KEYS = {
+    delete_account: 'acct-reason-delete',
+    cancel_snovio_plan: 'acct-reason-cancel-snovio',
+    cancel_linkedin_automation: 'acct-reason-cancel-linkedin'
   };
 
   // --- i18n init ---
@@ -185,6 +199,23 @@ document.addEventListener('DOMContentLoaded', () => {
   fsReason.addEventListener('change', updateFastspringReasonStep);
   updateFastspringReasonStep();
 
+  function updateAccountsReasonStep() {
+    const show = Boolean(accReason.value);
+    if (accAfterReason) accAfterReason.hidden = !show;
+    if (!show) {
+      accRegion.value = '';
+      accEmail.value = '';
+      accAgent.value = '';
+      clearFieldError(accRegion);
+      clearFieldError(accEmail);
+      clearFieldError(accAgent);
+      clearFieldError(accReason);
+    }
+  }
+
+  accReason.addEventListener('change', updateAccountsReasonStep);
+  updateAccountsReasonStep();
+
   // --- Confirmation form submit ---
   formConf.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -235,6 +266,28 @@ document.addEventListener('DOMContentLoaded', () => {
       formFs.reset();
       updateFastspringReasonStep();
       clearAllErrors(formFs);
+    });
+  });
+
+  // --- Accounts form submit ---
+  formAccounts.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!validateAccountsForm()) return;
+
+    const reason_code = accReason.value;
+    const payload = {
+      type: reason_code,
+      reason: CONFIG.ACCOUNTS_REASON_EN[reason_code] || reason_code,
+      region: accRegion.value,
+      email: accEmail.value.trim(),
+      agent_name: accAgent.value,
+      timestamp: new Date().toISOString()
+    };
+
+    await sendWebhook(payload, accSubmit, () => {
+      formAccounts.reset();
+      updateAccountsReasonStep();
+      clearAllErrors(formAccounts);
     });
   });
 
@@ -368,6 +421,33 @@ document.addEventListener('DOMContentLoaded', () => {
     return valid;
   }
 
+  function validateAccountsForm() {
+    let valid = true;
+    clearAllErrors(formAccounts);
+
+    if (!accReason.value) {
+      setFieldError(accReason, t('err-acct-reason'));
+      return false;
+    }
+
+    if (!accRegion.value) {
+      setFieldError(accRegion, t('err-region'));
+      valid = false;
+    }
+
+    if (!accEmail.value.trim() || !validateEmail(accEmail.value.trim())) {
+      setFieldError(accEmail, t('err-email'));
+      valid = false;
+    }
+
+    if (!accAgent.value) {
+      setFieldError(accAgent, t('err-agent'));
+      valid = false;
+    }
+
+    return valid;
+  }
+
   // --- Agents ---
   function getAgents() {
     try {
@@ -413,7 +493,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function populateAgentDropdowns(agents) {
-    [confAgent, fsAgent].forEach(select => {
+    [confAgent, fsAgent, accAgent].forEach(select => {
       const currentVal = select.value;
       const options = select.querySelectorAll('option:not(:first-child)');
       options.forEach(opt => opt.remove());
@@ -468,6 +548,10 @@ document.addEventListener('DOMContentLoaded', () => {
   function getLogTypeLabel(payload) {
     if (payload.type === 'confirmation_link') {
       return t('log-type-confirmation');
+    }
+    if (ACCOUNTS_REASON_I18N_KEYS[payload.type]) {
+      const reasonLabel = t(ACCOUNTS_REASON_I18N_KEYS[payload.type]);
+      return `${t('log-type-accounts')} — ${reasonLabel}`;
     }
     const reasonKey = FASTSPRING_REASON_I18N_KEYS[payload.reason_code || payload.reason];
     const reasonLabel = reasonKey ? t(reasonKey) : (payload.reason_code || payload.reason);
