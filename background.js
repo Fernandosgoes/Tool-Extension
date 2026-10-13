@@ -41,27 +41,45 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
   return true;
 });
 
-// Mostra/oculta o painel dentro da página; ele só fecha pelo X ou clicando no ícone de novo.
+// Mostra/oculta o painel dentro da página, com efeito "gênio" saindo do ícone da extensão.
+// Só fecha pelo X ou clicando no ícone de novo.
 function togglePanel(extensionUrl) {
   const ID = 'webhook-tool-panel';
   const existing = document.getElementById(ID);
+  const GENIE = [
+    { opacity: 0, transform: 'scale(0.06, 0.02) skewX(-24deg)', offset: 0 },
+    { opacity: 1, transform: 'scale(0.45, 0.35) skewX(-14deg)', offset: 0.35 },
+    { opacity: 1, transform: 'scale(0.9, 1.04) skewX(-3deg)', offset: 0.75 },
+    { opacity: 1, transform: 'scale(1, 1) skewX(0deg)', offset: 1 }
+  ];
+  const TIMING = { duration: 420, easing: 'cubic-bezier(.22,.8,.3,1)', fill: 'both' };
+
+  function closePanel(frame) {
+    if (frame.dataset.closing) return;
+    frame.dataset.closing = '1';
+    frame.animate(GENIE, { ...TIMING, duration: 300, direction: 'reverse', easing: 'ease-in' })
+      .finished.then(() => frame.remove(), () => frame.remove());
+  }
+
   if (existing) {
-    existing.remove();
+    closePanel(existing);
     return;
   }
   const frame = document.createElement('iframe');
   frame.id = ID;
   frame.src = extensionUrl;
   frame.style.cssText = [
-    'position:fixed', 'top:12px', 'right:12px', 'width:436px',
-    'height:min(640px,calc(100vh - 24px))', 'border:0', 'border-radius:12px',
+    'position:fixed', 'top:4px', 'right:8px', 'width:436px',
+    'height:min(640px,calc(100vh - 16px))', 'border:0', 'border-radius:12px',
     'box-shadow:0 8px 32px rgba(0,0,0,.3)', 'z-index:2147483647',
-    'background:transparent', 'color-scheme:normal'
+    'background:transparent', 'color-scheme:normal',
+    'transform-origin:calc(100% - 20px) 0'
   ].join(';');
   document.documentElement.appendChild(frame);
+  frame.animate(GENIE, TIMING);
   window.addEventListener('message', function onMsg(e) {
     if (e.source === frame.contentWindow && e.data && e.data.type === 'webhooktool-close-panel') {
-      frame.remove();
+      closePanel(frame);
       window.removeEventListener('message', onMsg);
     }
   });

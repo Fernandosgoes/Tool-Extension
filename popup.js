@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnSettings = document.getElementById('btn-settings');
   const btnCopyEmail = document.getElementById('btn-copy-email');
   const copyEmailLabel = document.getElementById('copy-email-label');
-  const LANG_CYCLE = ['pt', 'en', 'es', 'ua'];
+  const LANG_CYCLE = ['pt', 'en'];
 
   const FASTSPRING_REASON_I18N_KEYS = {
     whitelist: 'fs-reason-whitelist',
@@ -563,7 +563,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function getLocaleTag() {
-    return currentLang === 'en' ? 'en-US' : currentLang === 'es' ? 'es-ES' : currentLang === 'ua' ? 'uk-UA' : 'pt-BR';
+    return currentLang === 'en' ? 'en-US' : 'pt-BR';
   }
 
   function addLogEntry(payload) {

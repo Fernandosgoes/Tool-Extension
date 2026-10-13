@@ -1,52 +1,53 @@
 # Webhook Tool
 
-A Chrome extension (**Manifest V3**) that turns a few clicks into structured webhook calls. Point it at a **Make** or **n8n** scenario and your team can trigger standardized, professional emails and customer follow-ups straight from the browser, with no copy-pasting between systems.
+Extensão para Chrome (**Manifest V3**) que transforma alguns cliques em chamadas de webhook estruturadas. Conecte-a a um cenário do **Make** ou do **n8n** e sua equipe dispara e-mails padronizados e follow-ups de clientes direto do navegador, sem copiar e colar entre sistemas.
 
-## Why it exists
+## Por que existe
 
-Follow-ups are repetitive and easy to get wrong when written by hand. This tool lets an agent fill a short form, pick a reason from a dropdown and send. The automation behind the webhook takes care of the rest: building the email from your template, routing it, and logging it. Every message goes out consistent and on-brand.
+Follow-ups são repetitivos e é fácil errar quando escritos à mão. Com esta ferramenta, o atendente preenche um formulário curto, escolhe um motivo na lista e envia. A automação por trás do webhook faz o resto: monta o e-mail a partir do seu template, roteia e registra. Toda mensagem sai consistente e dentro do padrão da empresa.
 
-## Features
+## Funcionalidades
 
-- **Ready-made request forms:** confirmation link, billing/payment-provider requests and account actions, each sending a clean JSON payload with a stable `reason_code` plus an English `reason` label for easy routing in your automation.
-- **Floating panel that stays open:** click the toolbar icon and the panel opens inside the page. It does not close when you click elsewhere, so you can copy values from one place and paste them into the form. Close it with the **X** or by clicking the icon again.
-- **Session log:** history of successful submissions, with resend and clear actions.
-- **Agent registry:** keep a list of agent names stored locally in the browser and pick them from dropdowns.
-- **Multilingual UI:** Portuguese (BR), English, Spanish and Ukrainian, switchable from the header.
-- **Resilient sending:** request timeout and clear error messages when a webhook fails.
+- **Formulários prontos:** link de confirmação, pedidos de cobrança/provedor de pagamento e ações de conta. Cada um envia um JSON limpo, com `reason_code` estável e um `reason` em inglês para facilitar o roteamento na automação.
+- **Painel flutuante que não fecha sozinho:** ao clicar no ícone, o painel surge junto à barra de extensões com um efeito "gênio" (estilo macOS) e permanece aberto mesmo clicando fora, ideal para copiar valores de uma tela e colar no formulário. Fecha pelo **X** ou clicando no ícone de novo.
+- **Histórico da sessão:** lista os envios bem-sucedidos, com opções de reenviar e limpar.
+- **Cadastro de agentes:** nomes salvos localmente no navegador e escolhidos por menu.
+- **Interface bilíngue:** Português (BR) e Inglês, com troca pelo cabeçalho.
+- **Envio resiliente:** timeout configurável e mensagens de erro claras quando o webhook falha.
 
-## How it works
+## Como funciona
 
 ```
-Agent fills form -> extension POSTs JSON -> Make / n8n webhook -> email template -> recipient
+Atendente preenche o formulário -> extensão envia JSON (POST) -> webhook Make / n8n -> template de e-mail -> destinatário
 ```
 
-The service worker picks the target webhook from the payload `type` and sends a `POST` with a JSON body.
+O service worker escolhe o webhook de destino pelo `type` do payload e faz um `POST` com corpo JSON.
 
-## Install (developer mode)
+## Instalação (modo desenvolvedor)
 
-1. Set your webhook URLs in `config.js`.
-2. Open `chrome://extensions` and enable **Developer mode**.
-3. Click **Load unpacked** and select this folder.
-4. If your webhook is not on `hook.us1.make.com`, add its host to `host_permissions` in `manifest.json`.
+1. Defina as URLs dos seus webhooks em `config.js`.
+2. Abra `chrome://extensions` e ative o **Modo do desenvolvedor**.
+3. Clique em **Carregar sem compactação** e selecione esta pasta.
+4. Se o seu webhook não estiver em `hook.us1.make.com`, adicione o host em `host_permissions` no `manifest.json`.
 
-## Configuration
+## Configuração
 
-Everything lives in `config.js`:
+Tudo fica em `config.js`:
 
 - `WEBHOOK_CONFIRMATION_URL`, `WEBHOOK_FASTSPRING_URL`, `WEBHOOK_ACCOUNTS_URL`
 - `REQUEST_TIMEOUT_MS`, `MAX_LOG_ENTRIES`, `VERSION`
-- `*_REASON_EN`: English labels sent in the `reason` field, independent of the UI language
+- `*_REASON_EN`: rótulos em inglês enviados no campo `reason`, independentes do idioma da interface
 
-## Project layout
+## Estrutura do projeto
 
-| Path | Role |
-|------|------|
-| `manifest.json` | MV3 manifest, permissions, service worker |
-| `popup.html` / `popup.css` / `popup.js` | UI, forms, log, runtime i18n |
-| `i18n.js` | UI strings (PT / EN / ES / UA) |
-| `background.js` | Opens the floating panel and `POST`s JSON to the right webhook |
+| Caminho | Função |
+|---------|--------|
+| `manifest.json` | Manifest MV3, permissões, service worker |
+| `popup.html` / `popup.css` / `popup.js` | Interface, formulários, histórico, i18n em tempo de execução |
+| `i18n.js` | Textos da interface (PT / EN) |
+| `background.js` | Abre o painel flutuante e envia o `POST` JSON ao webhook correto |
+| `config.js` | URLs dos webhooks, timeouts e rótulos |
 
-## Privacy
+## Privacidade
 
-The extension sends the data you enter (emails, links, notes, agent name) only to the webhook URLs you configure. Nothing is sent anywhere else, and settings are stored locally in the browser.
+A extensão envia os dados digitados (e-mails, links, observações, nome do agente) apenas para as URLs de webhook que você configurar. Nada é enviado a outro lugar, e as preferências ficam salvas localmente no navegador.
