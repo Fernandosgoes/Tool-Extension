@@ -1,5 +1,7 @@
 # Webhook Tool
 
+![Webhook Tool](assets/banner.png)
+
 Extensão para Chrome (**Manifest V3**) que transforma alguns cliques em chamadas de webhook estruturadas. Conecte-a a um cenário do **Make** ou do **n8n** e sua equipe dispara e-mails padronizados e follow-ups de clientes direto do navegador, sem copiar e colar entre sistemas.
 
 ## Por que existe
