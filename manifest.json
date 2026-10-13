@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Webhook Tool",
+  "name": "Snov.io Support Tools",
   "version": "1.0.0",
-  "description": "Chrome extension that sends structured payloads to Make or n8n webhooks to trigger standardized emails and customer follow-ups.",
+  "description": "Internal tool for Snov.io support agents — send confirmation links and Fastspring requests via webhook.",
   "permissions": [
     "storage",
     "activeTab",

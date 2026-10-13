@@ -25,14 +25,14 @@ The service worker picks the target webhook from the payload `type` and sends a 
 
 ## Install (developer mode)
 
-1. Copy `config.example.js` to `config.js` and fill in your webhook URLs.
+1. Set your webhook URLs in `config.js`.
 2. Open `chrome://extensions` and enable **Developer mode**.
 3. Click **Load unpacked** and select this folder.
 4. If your webhook is not on `hook.us1.make.com`, add its host to `host_permissions` in `manifest.json`.
 
 ## Configuration
 
-Everything lives in `config.js` (git-ignored, so your URLs stay private):
+Everything lives in `config.js`:
 
 - `WEBHOOK_CONFIRMATION_URL`, `WEBHOOK_FASTSPRING_URL`, `WEBHOOK_ACCOUNTS_URL`
 - `REQUEST_TIMEOUT_MS`, `MAX_LOG_ENTRIES`, `VERSION`
@@ -46,7 +46,6 @@ Everything lives in `config.js` (git-ignored, so your URLs stay private):
 | `popup.html` / `popup.css` / `popup.js` | UI, forms, log, runtime i18n |
 | `i18n.js` | UI strings (PT / EN / ES / UA) |
 | `background.js` | Opens the floating panel and `POST`s JSON to the right webhook |
-| `config.example.js` | Template for `config.js` |
 
 ## Privacy
 
