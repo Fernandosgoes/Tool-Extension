@@ -1,6 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const STORAGE_KEY_AGENTS = 'snovio_agents';
-  const STORAGE_KEY_LOG = 'snovio_log';
+  document.getElementById('btn-close').addEventListener('click', () => {
+    window.parent.postMessage({ type: 'webhooktool-close-panel' }, '*');
+  });
+
+  const STORAGE_KEY_AGENTS = 'webhooktool_agents';
+  const STORAGE_KEY_LOG = 'webhooktool_log';
 
   const tabButtons = document.querySelectorAll('.tab-btn');
   const tabPanels = document.querySelectorAll('.tab-panel');
@@ -58,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const ACCOUNTS_REASON_I18N_KEYS = {
     delete_account: 'acct-reason-delete',
-    cancel_snovio_plan: 'acct-reason-cancel-snovio',
+    cancel_plan: 'acct-reason-cancel-plan',
     cancel_linkedin_automation: 'acct-reason-cancel-linkedin'
   };
 
@@ -108,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- Copy email ---
   if (btnCopyEmail) {
     btnCopyEmail.addEventListener('click', () => {
-      navigator.clipboard.writeText('fg@snov.io').then(() => {
+      navigator.clipboard.writeText('fernandogoex@gmail.com').then(() => {
         btnCopyEmail.classList.add('copied');
         if (copyEmailLabel) copyEmailLabel.textContent = t('about-bug-copied');
         setTimeout(() => {

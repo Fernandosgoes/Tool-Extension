@@ -1,6 +1,6 @@
 const TRANSLATIONS = {
   pt: {
-    'header-title': 'Snov.io Support Tools',
+    'header-title': 'Webhook Tool',
     'tab-confirmation': 'Link de confirmação',
     'tab-fastspring': 'Fastspring',
     'tab-log': 'Log',
@@ -36,9 +36,9 @@ const TRANSLATIONS = {
     'log-empty': 'Nenhum envio registrado.',
     'log-resend': 'Reenviar',
     'about-title': 'Sobre',
-    'about-product': 'Snov.io Support Tools',
+    'about-product': 'Webhook Tool',
     'about-version-label': 'Versão',
-    'about-internal': 'Extensão interna para envio de requisições via webhook. Desenvolvido para uso interno Snov.io Support.',
+    'about-internal': 'Extensão para envio de requisições via webhook (Make, n8n e similares), usada para disparar e-mails e follow-ups padronizados.',
     'about-close': 'Fechar',
     'notify-success': 'Informação enviada com sucesso.',
     'notify-log-cleared': 'Log limpo.',
@@ -65,7 +65,7 @@ const TRANSLATIONS = {
     'tab-accounts': 'Contas',
     'acct-reason-placeholder': 'Selecione o tipo',
     'acct-reason-delete': 'Deletar conta',
-    'acct-reason-cancel-snovio': 'Cancelar plano Snov.io',
+    'acct-reason-cancel-plan': 'Cancelar plano',
     'acct-reason-cancel-linkedin': 'Cancelar LinkedIn Automation',
     'err-acct-reason': 'Selecione o tipo de solicitação.',
     'about-bug-title': 'Reportar Bug',
@@ -76,7 +76,7 @@ const TRANSLATIONS = {
   },
 
   en: {
-    'header-title': 'Snov.io Support Tools',
+    'header-title': 'Webhook Tool',
     'tab-confirmation': 'Confirm Link',
     'tab-fastspring': 'Fastspring',
     'tab-log': 'Log',
@@ -112,9 +112,9 @@ const TRANSLATIONS = {
     'log-empty': 'No submissions recorded.',
     'log-resend': 'Resend',
     'about-title': 'About',
-    'about-product': 'Snov.io Support Tools',
+    'about-product': 'Webhook Tool',
     'about-version-label': 'Version',
-    'about-internal': 'Internal extension for sending requests via webhook. Developed for Snov.io Support internal use.',
+    'about-internal': 'Extension for sending requests via webhook (Make, n8n and similar), used to trigger standardized emails and follow-ups.',
     'about-close': 'Close',
     'notify-success': 'Information sent successfully.',
     'notify-log-cleared': 'Log cleared.',
@@ -141,7 +141,7 @@ const TRANSLATIONS = {
     'tab-accounts': 'Accounts',
     'acct-reason-placeholder': 'Select type',
     'acct-reason-delete': 'Delete Account',
-    'acct-reason-cancel-snovio': 'Cancel Snov.io Plan',
+    'acct-reason-cancel-plan': 'Cancel Plan',
     'acct-reason-cancel-linkedin': 'Cancel LinkedIn Automation',
     'err-acct-reason': 'Select request type.',
     'about-bug-title': 'Report a Bug',
@@ -152,7 +152,7 @@ const TRANSLATIONS = {
   },
 
   es: {
-    'header-title': 'Snov.io Support Tools',
+    'header-title': 'Webhook Tool',
     'tab-confirmation': 'Confirmar enlace',
     'tab-fastspring': 'Fastspring',
     'tab-log': 'Registro',
@@ -188,9 +188,9 @@ const TRANSLATIONS = {
     'log-empty': 'Ningún envío registrado.',
     'log-resend': 'Reenviar',
     'about-title': 'Acerca de',
-    'about-product': 'Snov.io Support Tools',
+    'about-product': 'Webhook Tool',
     'about-version-label': 'Versión',
-    'about-internal': 'Extensión interna para el envío de solicitudes vía webhook. Desarrollado para uso interno de Snov.io Support.',
+    'about-internal': 'Extensión para el envío de solicitudes vía webhook (Make, n8n y similares), usada para disparar correos y seguimientos estandarizados.',
     'about-close': 'Cerrar',
     'notify-success': 'Información enviada con éxito.',
     'notify-log-cleared': 'Registro limpiado.',
@@ -217,7 +217,7 @@ const TRANSLATIONS = {
     'tab-accounts': 'Cuentas',
     'acct-reason-placeholder': 'Seleccione el tipo',
     'acct-reason-delete': 'Eliminar cuenta',
-    'acct-reason-cancel-snovio': 'Cancelar plan Snov.io',
+    'acct-reason-cancel-plan': 'Cancelar plan',
     'acct-reason-cancel-linkedin': 'Cancelar LinkedIn Automation',
     'err-acct-reason': 'Seleccione el tipo de solicitud.',
     'about-bug-title': 'Reportar Error',
@@ -228,7 +228,7 @@ const TRANSLATIONS = {
   },
 
   ua: {
-    'header-title': 'Snov.io Support Tools',
+    'header-title': 'Webhook Tool',
     'tab-confirmation': 'Підтвердження посилання',
     'tab-fastspring': 'Fastspring',
     'tab-log': 'Журнал',
@@ -264,9 +264,9 @@ const TRANSLATIONS = {
     'log-empty': 'Немає записів.',
     'log-resend': 'Повторити',
     'about-title': 'Про',
-    'about-product': 'Snov.io Support Tools',
+    'about-product': 'Webhook Tool',
     'about-version-label': 'Версія',
-    'about-internal': 'Внутрішнє розширення для відправки запитів через webhook. Розроблено для внутрішнього використання Snov.io Support.',
+    'about-internal': 'Розширення для відправки запитів через webhook (Make, n8n та подібні), що використовується для запуску стандартизованих листів і follow-up.',
     'about-close': 'Закрити',
     'notify-success': 'Інформацію успішно надіслано.',
     'notify-log-cleared': 'Журнал очищено.',
@@ -293,7 +293,7 @@ const TRANSLATIONS = {
     'tab-accounts': 'Акаунти',
     'acct-reason-placeholder': 'Оберіть тип',
     'acct-reason-delete': 'Видалити акаунт',
-    'acct-reason-cancel-snovio': 'Скасувати план Snov.io',
+    'acct-reason-cancel-plan': 'Скасувати план',
     'acct-reason-cancel-linkedin': 'Скасувати LinkedIn Automation',
     'err-acct-reason': 'Оберіть тип запиту.',
     'about-bug-title': 'Повідомити про помилку',
@@ -304,7 +304,7 @@ const TRANSLATIONS = {
   }
 };
 
-const STORAGE_KEY_LANG = 'snovio_lang';
+const STORAGE_KEY_LANG = 'webhooktool_lang';
 let currentLang = localStorage.getItem(STORAGE_KEY_LANG) || 'pt';
 
 function t(key, replacements) {

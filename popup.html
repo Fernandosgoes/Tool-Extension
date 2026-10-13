@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="popup.css">
-  <title>Snov.io Support Tools</title>
+  <title>Webhook Tool</title>
 </head>
 <body>
   <!-- Side notifications (stack) -->
@@ -17,7 +17,7 @@
         <div class="header-brand">
           <img class="header-logo" src="icons/icons top right/Extension icon/ei64.png" width="26" height="26" alt="">
           <div class="header-titles">
-            <h1 class="header-title" data-i18n="header-title">Snov.io Support Tools</h1>
+            <h1 class="header-title" data-i18n="header-title">Webhook Tool</h1>
           </div>
         </div>
         <div class="header-actions">
@@ -30,6 +30,9 @@
           </button>
           <button type="button" class="header-action-btn" id="btn-about" data-i18n-aria-label="about-title" data-i18n-title="about-title" aria-label="Sobre a extensão" title="Sobre">
             <img src="icons/icons top right/about.png" width="13" height="13" alt="" aria-hidden="true">
+          </button>
+          <button type="button" class="header-action-btn" id="btn-close" aria-label="Fechar" title="Fechar">
+            <svg width="13" height="13" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 3l8 8M11 3l-8 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/></svg>
           </button>
         </div>
       </div>
@@ -177,7 +180,7 @@
           <select id="acc-reason" required>
             <option value="" data-i18n="acct-reason-placeholder">Selecione o tipo</option>
             <option value="delete_account" data-i18n="acct-reason-delete">Deletar conta</option>
-            <option value="cancel_snovio_plan" data-i18n="acct-reason-cancel-snovio">Cancelar plano Snov.io</option>
+            <option value="cancel_plan" data-i18n="acct-reason-cancel-plan">Cancelar plano</option>
             <option value="cancel_linkedin_automation" data-i18n="acct-reason-cancel-linkedin">Cancelar LinkedIn Automation</option>
           </select>
           <span class="field-error" id="acc-reason-error"></span>
@@ -238,16 +241,16 @@
   <div id="about-modal" class="modal-overlay" hidden>
     <div class="modal-about" role="dialog" aria-modal="true" aria-labelledby="about-modal-title">
       <h2 id="about-modal-title" class="modal-about-title" data-i18n="about-title">Sobre</h2>
-      <p class="about-text"><strong data-i18n="about-product">Snov.io Support Tools</strong></p>
+      <p class="about-text"><strong data-i18n="about-product">Webhook Tool</strong></p>
       <p class="about-text"><span data-i18n="about-version-label">Versão</span> <span id="about-version"></span></p>
-      <p class="about-text muted" data-i18n="about-internal">Extensão interna para envio de requisições via webhook. Desenvolvido para uso interno Snov.io Support.</p>
+      <p class="about-text muted" data-i18n="about-internal">Extensão para envio de requisições via webhook (Make, n8n e similares), usada para disparar e-mails e follow-ups padronizados.</p>
 
       <div class="modal-divider"></div>
 
       <h3 class="modal-bug-title" data-i18n="about-bug-title">Reportar Bug</h3>
       <p class="about-text muted" data-i18n="about-bug-desc">Encontrou um problema? Descreva o que aconteceu e envie para o email abaixo.</p>
       <div class="modal-bug-email-row">
-        <span class="modal-bug-email">fg@snov.io</span>
+        <span class="modal-bug-email">fernandogoex@gmail.com</span>
         <button type="button" class="btn-copy-email" id="btn-copy-email" data-i18n-title="about-bug-copy" title="Copiar email">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>

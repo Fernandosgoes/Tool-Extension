@@ -1,63 +1,53 @@
-# Snov.io Support Tools
+# Webhook Tool
 
-Chrome extension (**Manifest V3**) for **Snov.io** support agents to send structured payloads to **Make.com** webhooks—confirmation links and **Fastspring**-related requests.
+A Chrome extension (**Manifest V3**) that turns a few clicks into structured webhook calls. Point it at a **Make** or **n8n** scenario and your team can trigger standardized, professional emails and customer follow-ups straight from the browser, with no copy-pasting between systems.
 
-**Translations:** [Português (Brasil)](translations/README.pt-BR.md) · [Español](translations/README.es.md) · [Українська](translations/README.uk.md) · [Index](translations/README.md)
+## Why it exists
 
----
+Follow-ups are repetitive and easy to get wrong when written by hand. This tool lets an agent fill a short form, pick a reason from a dropdown and send. The automation behind the webhook takes care of the rest: building the email from your template, routing it, and logging it. Every message goes out consistent and on-brand.
 
-## What it does
+## Features
 
-- **Confirmation link:** sends recipient email, confirmation URL, and agent name to the confirmation webhook.
-- **Fastspring:** sends internal requests (whitelist request, billing panel email update, invoice data) with extra fields when required. Payload always includes stable `reason_code` and English `reason` text for Make.
-- **Log:** session history of successful submissions, resend and clear actions.
-- **Settings:** agent registry (persisted locally); settings panel also opens from the header gear icon.
-- **UI languages:** PT (BR), EN, ES, UA—cycle via the header language control.
+- **Ready-made request forms:** confirmation link, billing/payment-provider requests and account actions, each sending a clean JSON payload with a stable `reason_code` plus an English `reason` label for easy routing in your automation.
+- **Floating panel that stays open:** click the toolbar icon and the panel opens inside the page. It does not close when you click elsewhere, so you can copy values from one place and paste them into the form. Close it with the **X** or by clicking the icon again.
+- **Session log:** history of successful submissions, with resend and clear actions.
+- **Agent registry:** keep a list of agent names stored locally in the browser and pick them from dropdowns.
+- **Multilingual UI:** Portuguese (BR), English, Spanish and Ukrainian, switchable from the header.
+- **Resilient sending:** request timeout and clear error messages when a webhook fails.
 
-## Requirements
+## How it works
 
-- **Google Chrome** (or another Chromium browser that supports MV3 extensions).
-- Active Make webhooks (URLs in `config.js`).
+```
+Agent fills form -> extension POSTs JSON -> Make / n8n webhook -> email template -> recipient
+```
+
+The service worker picks the target webhook from the payload `type` and sends a `POST` with a JSON body.
 
 ## Install (developer mode)
 
-1. Open `chrome://extensions`.
-2. Enable **Developer mode**.
-3. Click **Load unpacked** and select this project folder.
+1. Copy `config.example.js` to `config.js` and fill in your webhook URLs.
+2. Open `chrome://extensions` and enable **Developer mode**.
+3. Click **Load unpacked** and select this folder.
+4. If your webhook is not on `hook.us1.make.com`, add its host to `host_permissions` in `manifest.json`.
 
 ## Configuration
 
-Edit **`config.js`**:
+Everything lives in `config.js` (git-ignored, so your URLs stay private):
 
-- `WEBHOOK_CONFIRMATION_URL`, `WEBHOOK_FASTSPRING_URL`
+- `WEBHOOK_CONFIRMATION_URL`, `WEBHOOK_FASTSPRING_URL`, `WEBHOOK_ACCOUNTS_URL`
 - `REQUEST_TIMEOUT_MS`, `MAX_LOG_ENTRIES`, `VERSION`
-- `FASTSPRING_REASON_EN` — English labels sent in the `reason` field (independent of UI language)
-
-**Agents:** add names under **Settings**; the Confirmation and Fastspring forms use those dropdowns.
+- `*_REASON_EN`: English labels sent in the `reason` field, independent of the UI language
 
 ## Project layout
 
 | Path | Role |
 |------|------|
-| `manifest.json` | MV3 manifest, permissions, popup, service worker |
+| `manifest.json` | MV3 manifest, permissions, service worker |
 | `popup.html` / `popup.css` / `popup.js` | UI, forms, log, runtime i18n |
 | `i18n.js` | UI strings (PT / EN / ES / UA) |
-| `background.js` | `POST` JSON to the correct webhook by `payload.type` |
-| `config.js` | Webhooks, timeouts, version, `FASTSPRING_REASON_EN` |
-| `PRD.md` | Internal product spec (Portuguese) |
-| `translations/` | Localized copies of this README |
-| `docs/sugestoes-e-melhorias/` | Collaborative suggestions workflow (Google Docs / `.docx`) |
+| `background.js` | Opens the floating panel and `POST`s JSON to the right webhook |
+| `config.example.js` | Template for `config.js` |
 
-## Privacy & scope
+## Privacy
 
-The extension sends **operational data** (emails, links, notes, agent id) to configured URLs. Built for **internal use** with controlled distribution. It does not replace your org’s compliance obligations for downstream Make scenarios.
-
-## More docs
-
-- **Project / security approval (Make, Gmail, full UI behavior):** [`docs/project-approval/README.md`](docs/project-approval/README.md)
-- **Product requirements (PRD):** canonical Portuguese [`PRD.md`](PRD.md); translations EN / ES / UA + index: [`translations/PRD-INDEX.md`](translations/PRD-INDEX.md)
-- **Suggestions & improvements:** `docs/sugestoes-e-melhorias/README.md`
-
----
-
-*Snov.io Support — internal tooling.*
+The extension sends the data you enter (emails, links, notes, agent name) only to the webhook URLs you configure. Nothing is sent anywhere else, and settings are stored locally in the browser.
